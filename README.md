@@ -20,7 +20,7 @@ Das Hands-On-Lab wird von der [DINI AG Elektronisches Publizieren](https://dini.
 
 - 16Uhr - 16Uhr15 	Einführung in die Veranstaltung und Vorstellungsrunde (Najko Jahn)
 
-- 16Uhr15 - 16Uhr35	Einführung in die technischen Anfoderungen des  DINI-Zertifikat 2019 (Friedrich Summann)
+- 16Uhr15 - 16Uhr35	Einführung in die technischen Anforderungen des  DINI-Zertifikat 2019 (Friedrich Summann)
 
 - 16Uhr35 - 16Uhr45 	Kurzvorstellung der Tools
 
