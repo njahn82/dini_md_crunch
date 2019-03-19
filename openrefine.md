@@ -46,3 +46,18 @@ Anwendungsbeispiele
 * Galvan, Angela (2016) [Gathering IR Seed Data with OpenRefine and SHERPA/RoMEO](https://asgalvan.com/2016/04/27/gathering-ir-seed-data-with-openrefine-and-sherparomeo/)
 * Steeg, Fabian; Pohl, Adrian (2018): [GND reconciliation for OpenRefine](http://blog.lobid.org/2018/08/27/openrefine.html)
 * Harlow, Christina (2015): [Data Munging Tools in Preparation for RDF: Catmandu and LODRefine](https://journal.code4lib.org/articles/11013), Code4Lib Journal \#30
+
+Beispiel Libreas
+===================
+
+* Ziel: Nachnutzung von OAI-DC-Metadaten und deren Aufbereitung als XML für Import in DOAJ
+* Anleitung [Workflow](https://github.com/libreas/libreas.github.io/wiki/prepare-and-submit-DOAJ-metadata) im Libreas-Wiki
+*  [edoc Collection \#34](
+* Vorgehen am Beispiel für [Ausgabe 34](http://libreas.eu/ausgabe34/inhalt/):
+  - edoc-Collection für Ausgabe aufrufen <https://edoc.hu-berlin.de/handle/18452/20305>
+  - ListIdentifiers <https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305> [view source](view-source:https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305) - XML kopieren
+  - neues Projekt in OpenRefine (via Clipboard) - XML einfügen - in Vorschau Bereich `<ListIdentifiers>` auswählen
+  - Skript einlesen: via `Undo/Redo` [json für Bearbeitungsschritte 1.2–3.6](/openrefine-libreas/libreasworkflow_1.2-3.7.json) einfügen
+  - (manuelle Nacharbeiten Schritt 3.8)
+  - in Refine-Projekt: `Export` -> `Templating`
+* [finale XML-Datei](/openrefine-libreas/libreas34_doaj.xml) für Import DOAJ
