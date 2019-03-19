@@ -1,10 +1,10 @@
 Was ist OpenRefine?
 ===================
 
-* „powerful tool for working with messy data": Bereinigung, (Format-)Transformation & Aggregation von Daten
+* "powerful tool for working with messy data": Bereinigung, (Format-)Transformation & Aggregation von Daten
 * Source code & kollaborative Entwicklung via [GitHub](https://github.com/OpenRefine/OpenRefine) ([BSD-3-Clause-Lizenz](http://opensource.org/licenses/BSD-3-Clause))
 * Aktuelle Version 3.1 ([Download](http://openrefine.org/download.html) für Windows, Mac OS, Linux)
-* primär GUI-gestützt; diverse [Client libraries](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers#known-client-libraries-for-refine) zur Automatisierung von OpenRefine-Transformationen (z.B. Python, R, ruby)
+* primär GUI-gestützt; diverse [Client libraries](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers#known-client-libraries-for-refine) zur Automatisierung (z.B. Python, R, ruby)
 * Kein Webservice! Desktop-Anwendung (Java-basiert): Bearbeitung im Browser (Aufruf via <http://127.0.0.1:3333/> oder <http://localhost:3333/>); Daten & Bearbeitungshistorie werden lokal gespeichert
 
 
@@ -15,8 +15,9 @@ Was kann OpenRefine?
 * Transformation: auf Ebenen Zellen, Zeilen oder Spalten; Standardfunktionen (Zellen aufteilen oder verketten, Leerzeichen entfernen, Datentyp ändern, Groß-/Kleinschreibung ändern, ...); Mini-Skripte mit Google Refine Expression Language (GREL), Python/Jython oder Clojure
 * History: Undo auch für ausgewählte (frühere) Schritte; kann exportiert werden, um gleiche Operationen auf andere Datensets anzuwenden
 * Aggregation: mit Daten aus anderen OR-Projekten; Webschnittstellen abfragen + Daten parsen (JSON, XML, HTML); Reconciliation Services (z.B. Wikidata, GND via LOBID, VIAF) bzw. [Extensions](http://openrefine.org/download.html) (z.B. GoKB)
+* Bearbeitung der Daten in tabellarischer Form ([Achtung mit row/record-Modus](https://librarycarpentry.org/lc-open-refine/03-working-with-data/index.html)) -> diverse Import- und Exportoptionen :smile:
 * Import: TSV, CSV, *SV, XLS(X), JSON, XML, RDF as XML, Google Data documents; andere Formate via OpenRefine Extensions
-* Export: Standardformate (CSV, TSV, XLS(X), HTML table, ...); Templating z.B. für XML
+* Export: Standardformate (CSV, TSV, XLS(X), HTML table, ...); custom Templating z.B. für XML
 
 
 Was kann OpenRefine nicht?
@@ -52,7 +53,6 @@ Beispiel Libreas
 
 * Ziel: Nachnutzung von OAI-DC-Metadaten und deren Aufbereitung als XML für Import in DOAJ
 * Anleitung [Workflow](https://github.com/libreas/libreas.github.io/wiki/prepare-and-submit-DOAJ-metadata) im Libreas-Wiki
-*  [edoc Collection \#34](
 * Vorgehen am Beispiel für [Ausgabe 34](http://libreas.eu/ausgabe34/inhalt/):
   - [edoc-Collection](https://edoc.hu-berlin.de/handle/18452/20305) für Ausgabe aufrufen – Collection Identifier identifizieren
   - [OAI-Abfrage ListIdentifiers](https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305) (view source!) - XML kopieren
