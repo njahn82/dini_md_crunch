@@ -54,10 +54,10 @@ Beispiel Libreas
 * Anleitung [Workflow](https://github.com/libreas/libreas.github.io/wiki/prepare-and-submit-DOAJ-metadata) im Libreas-Wiki
 *  [edoc Collection \#34](
 * Vorgehen am Beispiel für [Ausgabe 34](http://libreas.eu/ausgabe34/inhalt/):
-  - edoc-Collection für Ausgabe aufrufen <https://edoc.hu-berlin.de/handle/18452/20305>
-  - ListIdentifiers <https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305> [view source](view-source:https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305) - XML kopieren
+  - [edoc-Collection](https://edoc.hu-berlin.de/handle/18452/20305) für Ausgabe aufrufen – Collection Identifier identifizieren
+  - [OAI-Abfrage ListIdentifiers](https://edoc.hu-berlin.de/oai/request/?verb=ListIdentifiers&metadataPrefix=rdf&set=col_18452_20305) (view source!) - XML kopieren
   - neues Projekt in OpenRefine (via Clipboard) - XML einfügen - in Vorschau Bereich `<ListIdentifiers>` auswählen
-  - Skript einlesen: via `Undo/Redo` [json für Bearbeitungsschritte 1.2–3.6](/openrefine-libreas/libreasworkflow_1.2-3.6.json) einfügen
+  - OpenRefine-Skript einlesen via `Undo/Redo`: [json für Bearbeitungsschritte 1.2–3.6](/openrefine-libreas/libreasworkflow_1.2-3.6.json)
   - (manuelle Nacharbeiten Schritt 3.8)
-  - in Refine-Projekt: `Export` -> `Templating`
+  - XML-Datei exportieren: `Export` -> `Templating`
 * [finale XML-Datei](/openrefine-libreas/libreas34_doaj.xml) für Import DOAJ
