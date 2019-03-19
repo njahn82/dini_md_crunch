@@ -4,18 +4,18 @@ Was ist OpenRefine?
 * „powerful tool for working with messy data": Bereinigung, (Format-)Transformation & Aggregation von Daten
 * Source code & kollaborative Entwicklung via [GitHub](https://github.com/OpenRefine/OpenRefine) ([BSD-3-Clause-Lizenz](http://opensource.org/licenses/BSD-3-Clause))
 * Aktuelle Version 3.1 ([Download](http://openrefine.org/download.html) für Windows, Mac OS, Linux)
-* Kein Webservice! Desktop-Anwendung (Java-basiert): Bearbeitung im Browser; Daten & Bearbeitungshistorie werden lokal gespeichert
-* GUI-gestützt; [Client libraries](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers#known-client-libraries-for-refine)
+* primär GUI-gestützt; diverse [Client libraries](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers#known-client-libraries-for-refine) zur Automatisierung von OpenRefine-Transformationen (z.B. Python, R, ruby)
+* Kein Webservice! Desktop-Anwendung (Java-basiert): Bearbeitung im Browser (Aufruf via <http://127.0.0.1:3333/> oder <http://localhost:3333/>); Daten & Bearbeitungshistorie werden lokal gespeichert
 
 
 Was kann OpenRefine?
 ====================
 
 * Datenexploration: Filter & Facetten (verschiedene Datentypen), Clustering, Dubletten
-* Transformation: auf Ebenen Zellen, Zeilen oder Spalten; Standardfunktionen (Leerzeichen, Datentyp ändern, Groß-Kleinschreibung); Mini-Skripte mit Google Refine Expression Language (GREL), Python/Jython oder Clojure
+* Transformation: auf Ebenen Zellen, Zeilen oder Spalten; Standardfunktionen (Zellen aufteilen oder verketten, Leerzeichen entfernen, Datentyp ändern, Groß-/Kleinschreibung ändern, ...); Mini-Skripte mit Google Refine Expression Language (GREL), Python/Jython oder Clojure
 * History: Undo auch für ausgewählte (frühere) Schritte; kann exportiert werden, um gleiche Operationen auf andere Datensets anzuwenden
-* Aggregation: mit Daten aus anderen OR-Projekten; Webschnittstellen abfragen + Daten parsen (JSON, XML, HTML); Reconciliation Services (z.B. Wikidata)
-* Import: TSV, CSV, *SV, XLS(X), JSON, XML, RDF as XML, Google Data documents; andere Formate via OpenRefine extensions
+* Aggregation: mit Daten aus anderen OR-Projekten; Webschnittstellen abfragen + Daten parsen (JSON, XML, HTML); Reconciliation Services (z.B. Wikidata, GND via LOBID, VIAF) bzw. [Extensions](http://openrefine.org/download.html) (z.B. GoKB)
+* Import: TSV, CSV, *SV, XLS(X), JSON, XML, RDF as XML, Google Data documents; andere Formate via OpenRefine Extensions
 * Export: Standardformate (CSV, TSV, XLS(X), HTML table, ...); Templating z.B. für XML
 
 
@@ -26,6 +26,7 @@ Was kann OpenRefine nicht?
 * Manuelles Hinzufügen neuer Zeilen
 * Statistische Auswertung oder Plotten (Diagramme, Grafiken) -- aber bestens geeignet für Vorbereitung der Daten für weitere Verwendung in Excel (Pivot) oder R, Python o.Ä.
 * Rechteverwaltung für verschiedene Nutzer\*innen, die an gleichem Projekt arbeiten
+* Performance Probleme bei sehr großen Datensets
 
 
 Wie kann ich mehr über OpenRefine lernen?
@@ -36,10 +37,12 @@ Wie kann ich mehr über OpenRefine lernen?
 * Einführung: Ruben Verborgh, Max De Wilde (2013) [Using OpenRefine](http://www.packtpub.com/openrefine-guide-for-data-analysis-and-linking-dataset-to-the-web/book), ISBN 9781783289080
 * Zahlreiche allgemeine Einführungen und Lösungsansätze für bestimmte Aufgaben auf [YouTube](https://www.youtube.com/results?search_query=openefine)
 
+
 Anwendungsbeispiele
 ===================
 
-* LIBREAS.Library Ideas: [Workflow](https://github.com/libreas/libreas.github.io/wiki/prepare-and-submit-DOAJ-metadata) zur Nachnutzung von OAI-DC-Metadaten und Aufbereitung als XML für Import in DOAJ
+* LIBREAS.Library Ideas: [Workflow](https://github.com/libreas/libreas.github.io/wiki/prepare-and-submit-DOAJ-metadata) zur Nachnutzung von OAI-DC-Metadaten und deren Aufbereitung als XML für Import in DOAJ
 * Hamburg Open Science "Schaufenster": [Automated workflow for harvesting, transforming and indexing of metadata using metha, OpenRefine and Solr](https://github.com/subhh/HOS-MetadataTransformations)
 * Galvan, Angela (2016) [Gathering IR Seed Data with OpenRefine and SHERPA/RoMEO](https://asgalvan.com/2016/04/27/gathering-ir-seed-data-with-openrefine-and-sherparomeo/)
-* Christina Harlow (2015): [Data Munging Tools in Preparation for RDF: Catmandu and LODRefine](https://journal.code4lib.org/articles/11013), Code4Lib Journal \#30
+* Steeg, Fabian; Pohl, Adrian (2018): [GND reconciliation for OpenRefine](http://blog.lobid.org/2018/08/27/openrefine.html)
+* Harlow, Christina (2015): [Data Munging Tools in Preparation for RDF: Catmandu and LODRefine](https://journal.code4lib.org/articles/11013), Code4Lib Journal \#30
