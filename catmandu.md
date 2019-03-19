@@ -42,21 +42,29 @@ $ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --listRecords 1 \
 
 
 ```bash
+$ catmandu convert YAML to Breaker <data/openaccess.yml >data/openaccess.breaker
+```
 
+#### Analyse einzelner Felder, z.B. `dc:rights`
+
+```bash
+$ catmandu convert YAML to YAML --fix "retain(rights)" <data/openaccess.yml
+# oder
+$ catmandu convert YAML to YAML --fix "retain(rights)" <data/all.yml
+```
+
+Zeige Werte an vorkommende Werte an:
+```bash
+$ catmandu convert YAML to CSV --fix "move(rights.0, r); retain(r)" \
+  < data/all.yml | sort | uniq
 ```
 
 ```bash
 ```
 
-```bash
-```
-
-```bash
-```
 
 
-
-## Weitere Infos
+## Weiterführende Informationen
 
 - http://journal.code4lib.org/articles/7818
 
