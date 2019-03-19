@@ -4,6 +4,7 @@ title: "OAI Harvesten mit R"
 
 
 
+
 ## Was ist R?
 
 [R](https://cran.r-project.org/) ist eine freie und quelloffene statistische Programmierumgebung, die für Datenanalysen in Wissenschaft, Wirtschaft und Gesellschaft geeignet ist.
@@ -16,6 +17,8 @@ Das besondere an R sind:
 - R Code kann als Skript oder innerhalb von Notebooks wie Jupyter Notebooks oder R Markdown ausgeführt werden
 - R Markdown lässt sich in verschiedene Formate wie docx, html oder pdf exportieren. Es lassen sich auch interaktive Dashboards mit flexdashboard erstellen.
 - Integriert mit vielfältigen Tools, um Reproduzierbarkeit von Datenanalysen zu gewährleisten (siehe z.B. [A guide to modern reproducible data science with R - Karthik Ram](https://resources.rstudio.com/rstudio-conf-2019/a-guide-to-modern-reproducible-data-science-with-r))
+
+**Das Notebook in einer Cloud-basierten R Studio Session befindet sich hier: <https://rstudio.cloud/project/272684> Eine kostenfreie Anmeldung per Email ist notwendig.**
 
 ## Pakete für OAI-PMH
 
