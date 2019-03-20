@@ -1,0 +1,166 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column ListIdentifiers - header - setSpec",
+    "columnName": "ListIdentifiers - header - setSpec"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column ListIdentifiers - header - datestamp",
+    "columnName": "ListIdentifiers - header - datestamp"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column ListIdentifiers - header - identifier to identifier",
+    "oldColumnName": "ListIdentifiers - header - identifier",
+    "newColumnName": "identifier"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": [
+        {
+          "omitError": false,
+          "expression": "isBlank(value)",
+          "selectBlank": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectError": false,
+          "invert": false,
+          "name": "identifier",
+          "omitBlank": false,
+          "type": "list",
+          "columnName": "identifier"
+        }
+      ]
+    }
+  },
+  {
+    "op": "core/column-addition-by-fetching-urls",
+    "description": "Create column edoc xml - format=rdf at index 1 by fetching URLs based on column identifier using expression grel:\"https://edoc.hu-berlin.de/oai/request/?verb=GetRecord&metadataPrefix=rdf&identifier=\" + value",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "edoc xml - format=rdf",
+    "columnInsertIndex": 1,
+    "baseColumnName": "identifier",
+    "urlExpression": "grel:\"https://edoc.hu-berlin.de/oai/request/?verb=GetRecord&metadataPrefix=rdf&identifier=\" + value",
+    "onError": "store-error",
+    "delay": 20,
+    "cacheResponses": true,
+    "httpHeadersJson": null
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column title at index 2 based on column edoc xml - format=rdf using expression grel:forEach(value.parseHtml().select(\"dc|title\"),v,v.htmlText()).join(\"||\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "title",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:forEach(value.parseHtml().select(\"dc|title\"),v,v.htmlText()).join(\"||\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column author at index 2 based on column edoc xml - format=rdf using expression grel:forEach(value.parseHtml().select(\"dc|creator\"),v,v.htmlText()).join(\"||\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "author",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:forEach(value.parseHtml().select(\"dc|creator\"),v,v.htmlText()).join(\"||\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column author using expression grel:forEach(value.split('||'), v, v.split(', ')[1] + \" \" + forEach(v.split(', ')[0].split(' '), w, w).join('. ')).join('</name></author><author><name>')",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "columnName": "author",
+    "expression": "grel:forEach(value.split('||'), v, v.split(', ')[1] + \" \" + forEach(v.split(', ')[0].split(' '), w, w).join('. ')).join('</name></author><author><name>')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column abstract at index 2 based on column edoc xml - format=rdf using expression grel:value.parseHtml().select(\"dc|description\")[0].htmlText()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "abstract",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:value.parseHtml().select(\"dc|description\")[0].htmlText()",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column language at index 2 based on column edoc xml - format=rdf using expression grel:value.parseHtml().select(\"dc|language\")[0].htmlText()",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "language",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:value.parseHtml().select(\"dc|language\")[0].htmlText()",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column doi at index 2 based on column edoc xml - format=rdf using expression grel:value.parseHtml().select(\"dc|identifier\")[3].htmlText().split(\"org/\")[1]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "doi",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:value.parseHtml().select(\"dc|identifier\")[3].htmlText().split(\"org/\")[1]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column keywords at index 2 based on column edoc xml - format=rdf using expression grel:forEach(value.parseHtml().select(\"dc|subject\"),v,v.htmlText()).join(\"</keyword><keyword>\")",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "keywords",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:forEach(value.parseHtml().select(\"dc|subject\"),v,v.htmlText()).join(\"</keyword><keyword>\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column libreasURL at index 2 based on column edoc xml - format=rdf using expression grel:\"http://libreas.eu/ausgabe34/\" + toLowercase(value.parseHtml().select(\"dc|creator\")[0].htmlText().split(\", \")[0])",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "libreasURL",
+    "columnInsertIndex": 2,
+    "baseColumnName": "edoc xml - format=rdf",
+    "expression": "grel:\"http://libreas.eu/ausgabe34/\" + toLowercase(value.parseHtml().select(\"dc|creator\")[0].htmlText().split(\", \")[0])",
+    "onError": "set-to-blank"
+  }
+]
