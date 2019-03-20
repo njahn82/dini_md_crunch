@@ -46,17 +46,6 @@ Bibliothek laden:
 library(oai)
 ```
 
-```
-## 
-## Attaching package: 'oai'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     id
-```
-
 ### Identify
 
 Beispiel: KOPS der UNI Konstanz
@@ -274,7 +263,7 @@ my_df %>%
   labs(x = "Jahr", y = "Anzahl", title = "Vergleich zweier DINI-zertifizierter Repositorien", subtitle = "Zeitschriftenartikel")
 ```
 
-![plot of chunk unnamed-chunk-124](figure/unnamed-chunk-124-1.png)
+<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="720" />
 
 ## Wie viele davon sind frei verfügbar?
 
@@ -297,7 +286,7 @@ my_df %>%
   labs(x = "Jahr", y = "Anzahl", title = "Zeitschriftenartikel in DINI-zertifizierten Repositorien")
 ```
 
-![plot of chunk unnamed-chunk-125](figure/unnamed-chunk-125-1.png)
+<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="720" />
 
 ## Fachliche Verteilung der Artikel
 
@@ -347,4 +336,4 @@ my_df %>%
          title = "Vergleich zweier DINI-zertifizierter Repositorien", subtitle = "Fachliche Verteilung Zeitschriftenartikel (2012 - 2018)") 
 ```
 
-![plot of chunk unnamed-chunk-126](figure/unnamed-chunk-126-1.png)
+<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="720" />

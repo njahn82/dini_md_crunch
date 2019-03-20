@@ -123,7 +123,7 @@ my_df <- bind_rows(konstanz_short, uni_reg_short)
 
 ## Verteilung nach Jahr
 
-```{r}
+```{r fig.width=10, fig.height=7, fig.retina=2}
 my_df %>%
   mutate(year = lubridate::parse_date_time(date, c('y', 'ymd', 'ym'))) %>%
   mutate(year = lubridate::year(year)) %>%
@@ -140,7 +140,7 @@ my_df %>%
 
 ## Wie viele davon sind frei verfügbar?
 
-```{r}
+```{r fig.width=10, fig.height=7, fig.retina=2}
 my_df %>%
   mutate(license = ifelse(!is.na(rights), "OA", "Closed")) %>%
   mutate(year = lubridate::parse_date_time(date, c('y', 'ymd', 'ym'))) %>%
@@ -162,7 +162,7 @@ my_df %>%
 
 Datenbereinigen (Pivotartig, d.h. von weit zum langen Format wechseln)
 
-```{r}
+```{r fig.width=10, fig.height=7, fig.retina=2}
 my_df %>%
   mutate(license = ifelse(!is.na(rights), "OA", "Closed")) %>%
   mutate(year = lubridate::parse_date_time(date, c('y', 'ymd', 'ym'))) %>%
