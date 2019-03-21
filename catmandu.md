@@ -1,68 +1,100 @@
-# Harvesting von Metadaten
+# Harvesting von OAI-Metadaten mit Catmandu
 
-## Tools
+## Was ist Catmandu?
 
-## Use cases
+Catmandu - the data processing toolkit
 
-### Alle Daten des Repositories
+"Catmandu is a command line tool to access and convert data 
+from your digital library, research services or any other open data sets."
+
+Siehe http://librecat.org/ für mehr Infos.
+
+## Grundbegriffe OAI-Abfragen mit Catmandu
+
+### Zeige Information zum Repository: `identify`
 
 ```bash
-$ catmandu convert OAI --.....\
-  to YAML >uni-bi.ym
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --identify 1 to YAML
 ```
 
-#### Harvest records
-$ catmandu convert OAI --url http://myrepo.org/oai
-$ catmandu convert OAI --url http://myrepo.org/oai --metadataPrefix didl --handler raw
+### Zeige vorhanden Formate: `listMetadataFormats`
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --listMetadataFormats 1 to YAML
+```
 
-#### Harvest repository description
-$ catmandu convert OAI --url http://myrepo.org/oai --identify 1
-
-#### Harvest identifiers
-$ catmandu convert OAI --url http://myrepo.org/oai --listIdentifiers 1
-
-#### Harvest sets
-$ catmandu convert OAI --url http://myrepo.org/oai --listSets 1
-
-#### Harvest metadataFormats
-$ catmandu convert OAI --url http://myrepo.org/oai --listMetadataFormats 1
-
-#### Harvest one record
-$ catmandu convert OAI --url http://myrepo.org/oai --getRecord 1 --identifier oai:myrepo:1234
-
-
-
-#### Harvesting von aktuellen Open-Access-Publikationen
+### Zeige Identifier: `listIdentifiers`
 
 ```bash
-$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --listRecords 1 \
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --listIdentifiers 1 to YAML
+```
+
+### Zeige vorhandene Sets: `listSets`
+
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --listSets 1 to YAML
+```
+
+### Harvesting von Daten: `listRecords`
+
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai to YAML
+```
+
+*Achtung: Dieser Befehl harvestet alle Records des Repositories! Dies kann einige Minuten in Anspruch nehmen (ca. 6 min. bei PUB).*
+
+a. In anderen Formaten
+
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --metadataPrefix rdf --handler raw to YAML
+```
+
+b. Einen einzigen Datensatz
+
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai --getRecord 1 --identifier oai:pub.uni-bielefeld.de:1634091 to YAML
+```
+
+c. Aktuelle Open-Access-Publikationen
+
+```bash
+$ catmandu convert OAI --url https://pub.uni-bielefeld.de/oai     
+  --listRecords 1 \
   --set open_access --from 2018-10-01 to YAML \
-  --fix "reject any_match(_status, deleted)" >data/openaccess.yml
+  --fix "reject any_match(_status, deleted)" to YAML
 ```
 
+## Datenanalyse
 
+### Gesamtübersicht über die Werteverteilung
+
+Zuerst werden die Daten in ein `Breaker`-Format, transformiert:  
 ```bash
 $ catmandu convert YAML to Breaker <data/openaccess.yml >data/openaccess.breaker
 ```
 
-#### Analyse einzelner Felder, z.B. `dc:rights`
+Danach kommt die statistische Analyse:
 
 ```bash
-$ catmandu convert YAML to YAML --fix "retain(rights)" <data/openaccess.yml
-# oder
-$ catmandu convert YAML to YAML --fix "retain(rights)" <data/all.yml
+$ catmandu breaker daten/openaccess.breaker
 ```
 
-Zeige Werte an vorkommende Werte an:
+### Analyse einzelner Felder
+
+a. Werte von `dc:rights`
+
 ```bash
-$ catmandu convert YAML to CSV --fix "move(rights.0, r); retain(r)" \
+$ catmandu convert YAML to CSV \
+  --fix "move(rights.0, r); retain(r)" \
   < data/all.yml | sort | uniq
 ```
 
+b. Werte von `dc:language`
+
 ```bash
+$ catmandu convert YAML to CSV \
+  --fix "move(language.0, l); retain(l)" \
+  < data/all.yml | sort | uniq
 ```
-
-
 
 ## Weiterführende Informationen
 
