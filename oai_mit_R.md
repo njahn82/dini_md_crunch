@@ -4,30 +4,37 @@ title: "OAI Harvesten mit R"
 
 
 
+**Die Dokumentation und Demo kann als Notebook  im Browser selbst ausgeführt und verändert werden. Es befindet sich in der folgenden Cloud-basierten R Studio Session: <https://rstudio.cloud/project/272684>. Eine kostenfreie Anmeldung für den Dienst per Email ist notwendig. Wenn das Notebook lokal betrieben werden soll, bitte die Datei [oai_mit_R.Rmd] in R Studio verwenden!**
 
 ## Was ist R?
 
-[R](https://cran.r-project.org/) ist eine freie und quelloffene statistische Programmierumgebung, die  in Wissenschaft, Wirtschaft und Gesellschaft für Datenanalysen beliebt ist.
+[R](https://cran.r-project.org/) ist eine freie und quelloffene statistische Programmierumgebung (nicht nur) für Datenanalysen.
 
-Ein populäre Entwicklungsumgebung ist [R Studio](https://www.rstudio.com/). Wenn R und R Studio zunächst nicht installiert werden sollen, eignet sich die [R Studio Cloudversion](https://rstudio.cloud/) zum Ausprobieren.
+Eine populäre R-Entwicklungsumgebung ist [R Studio](https://www.rstudio.com/). Wenn R und R Studio zunächst nicht installiert werden sollen, eignet sich die [R Studio Cloudversion](https://rstudio.cloud/) zum Ausprobieren.
 
 Einige Merkmale von R:
 
-- Es gibt umfangreichen Pakete, die zumeist im [Softwarearchiv CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) vorgehalten sind. Viele Pakete fungieren als Schnittstellen zu Softwarepakten aus anderen Programmiersprachen, z.B. Tesseract OCR oder curl. Für das Arbeiten mit wissenschaftlichen Quellen und Tools betreut die [rOpenSci](https://ropensci.org/packages/) umfangreiche Pakete.
-- R Code kan interaktiv, als Skript oder innerhalb von Notebooks wie [Jupyter Notebooks](https://docs.anaconda.com/anaconda/navigator/tutorials/r-lang/) oder [R Markdown](https://rmarkdown.rstudio.com/) ausgeführt werden
+- Es gibt umfangreichen Pakete, die zumeist im [Softwarearchiv CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) vorgehalten werden. Viele Pakete fungieren als Schnittstellen zu Softwarepakten aus anderen Programmiersprachen, z.B. [Tesseract OCR](https://cran.r-project.org/web/packages/tesseract/index.html) oder [libcurl](https://cran.r-project.org/web/packages/curl/index.html). Für das Arbeiten mit wissenschaftlichen Quellen und Tools betreut die [rOpenSci](https://ropensci.org/packages/) umfangreiche Pakete.
+- R Code kann interaktiv, als Skript oder mit Notebooks wie [Jupyter Notebooks](https://docs.anaconda.com/anaconda/navigator/tutorials/r-lang/) oder [R Markdown](https://rmarkdown.rstudio.com/) ausgeführt werden
 - R Markdown lässt sich in verschiedene Formate wie docx, html oder pdf exportieren. Es lassen sich auch interaktive Dashboards mithilfe des Pakets [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/) aus R Markdown Dokumenten heraus erstellen
-- R interoperiert mit vielfältigen Tools, um Reproduzierbarkeit von Datenanalysen zu gewährleisten (siehe z.B. [A guide to modern reproducible data science with R - Karthik Ram](https://resources.rstudio.com/rstudio-conf-2019/a-guide-to-modern-reproducible-data-science-with-r))
-
-**Das Notebook der folgenden Demo kann im Browser selbst ausgeführt werden. Es befindet sich in der folgenden Cloud-basierten R Studio Session: <https://rstudio.cloud/project/272684> Eine kostenfreie Anmeldung für den Dienst per Email ist notwendig.**
+- R interoperiert mit vielfältigen Tools, um die Reproduzierbarkeit von Datenanalysen zu gewährleisten (siehe z.B. [A guide to modern reproducible data science with R - Karthik Ram](https://resources.rstudio.com/rstudio-conf-2019/a-guide-to-modern-reproducible-data-science-with-r))
 
 ## Pakete für OAI-PMH
 
 Es gibt zwei Pakete zum Umgang mit OAI-PMH-Schnittstellen:
 
-- [OAIHarvester: Harvest Metadata Using OAI-PMH Version 2.0](https://cran.r-project.org/web/packages/OAIHarvester/index.html). Verfügt über eine sehr umfangreiches  [Tutorial](https://cran.r-project.org/web/packages/OAIHarvester/vignettes/oaih.pdf)
-- [oai](https://cran.r-project.org/web/packages/oai/index.html) 
+- [OAIHarvester: Harvest Metadata Using OAI-PMH Version 2.0](https://cran.r-project.org/web/packages/OAIHarvester/index.html) von Kurt Hornik. Das Paket verfügt über eine sehr umfangreiches [Tutorial am Beispiel des Insitutionellen Repositoriums der WU Wien](https://cran.r-project.org/web/packages/OAIHarvester/vignettes/oaih.pdf)
+- [oai](https://cran.r-project.org/web/packages/oai/index.html) von Scott Chamberlain für die rOpenSci Initiative.
 
 Für die folgende Demo nutzen wir [oai](https://cran.r-project.org/web/packages/oai/index.html) 
+
+## Wie kann ich R lernen?
+
+Es gibt vielfältige Möglichkeiten, R zu lernen. So bieten viele Universitäten Einsteigerkurse für R an.
+
+Eine tolle und umfangreiche Einführung bietet
+[R for Data Science](https://www.oreilly.com/library/view/r-for-data/9781491910382/) von Garrett Grolemund und Hadley Wickham. Das Buch einschließlich sämtlicher Codebeispiele ist Open Access verfügbar: <https://r4ds.had.co.nz/>
+
 
 ## Wie kann ich ein R Paket installieren?
 
@@ -191,6 +198,15 @@ oai::list_records(url = "http://kops.uni-konstanz.de/oai/dini",
 ## #   creator.72 <chr>, …
 ```
 
+Um OAI Records als csv-Tabelle zu sichern, sichern wir die Ergebnisse zunächst als ein Datenobjekt `my_df` und exportieren es anschließend mit der Funktion `write.csv`
+
+
+```r
+my_df <- oai::list_records(url = "http://kops.uni-konstanz.de/oai/dini",
+                      from = '2018-05-01T', until = '2018-06-01T',
+                  set = "doc-type:article")
+write.csv(my_df, "meine_oai_dc_daten.csv")
+```
 
 ### GetRecords
 
@@ -218,7 +234,7 @@ oai::get_records(url = "http://kops.uni-konstanz.de/oai/dini",
 
 ## Beispielanalyse
 
-Das DINI-Zertifikat fordert die Verwendung kontrollierter Vokabulare für Publikationstypen und Klassifikation (DDC). Wir wollen uns diese Standardisierung zu nutze machen und die inhaltliche Verteilung von elektron zwischen der Universität Regensburg und der Universität Konstanz  analysieren.
+Das DINI-Zertifikat fordert die Verwendung kontrollierter Vokabulare für Publikationstypen und inhaltliche Erschließung mittels der Dewey-Dezimalklassifikation. Wir wollen uns diese Standardisierungsbemühungen zu nutze machen und die inhaltliche Verteilung von Artikeln zwischen der Universität Regensburg und der Universität Konstanz  analysieren.
 
 
 ```r
@@ -228,7 +244,7 @@ uni_reg <- oai::list_records(url = "http://epub.uni-regensburg.de/cgi/oai2",
                   set = "doc-type:article")
 ```
 
-Wir interessieren uns für folgende Felder: `subject`, `title`, `rights`, `date`
+Wir interessieren uns für folgende Dublin-Core-Felder: `subject`, `title`, `rights`, `date`, die wir mit der Funktion [`select`](https://dplyr.tidyverse.org/reference/select.html) auswählen.
 
 
 ```r
@@ -247,6 +263,8 @@ my_df <- bind_rows(konstanz_short, uni_reg_short)
 
 ## Verteilung nach Jahr
 
+Mithilfe des Pakets [`lubridate`](https://lubridate.tidyverse.org/) transformieren wir die Datumsangaben als Jahr. Anschließend wählen wir nur Records zwischen 2012 und 2018 mit der Funktion[`filter()`](https://dplyr.tidyverse.org/reference/filter.html) und berechnen das gemeinsame Vorkommen von Artikeln je Jahr und Quelle mit [`count`](https://dplyr.tidyverse.org/reference/tally.html). Zur Visualiserung nutzen wir [ggplot2](https://ggplot2.tidyverse.org/).
+
 
 ```r
 my_df %>%
@@ -263,7 +281,7 @@ my_df %>%
   labs(x = "Jahr", y = "Anzahl", title = "Vergleich zweier DINI-zertifizierter Repositorien", subtitle = "Zeitschriftenartikel")
 ```
 
-<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="720" />
+<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="720" />
 
 ## Wie viele davon sind frei verfügbar?
 
@@ -286,11 +304,11 @@ my_df %>%
   labs(x = "Jahr", y = "Anzahl", title = "Zeitschriftenartikel in DINI-zertifizierten Repositorien")
 ```
 
-<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="720" />
+<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="720" />
 
 ## Fachliche Verteilung der Artikel
 
-Datenbereinigen (Pivotartig, d.h. von weit zum langen Format wechseln)
+Das Paket [`tidyr`](https://tidyr.tidyverse.org/) bietet Werkzeuge, um etwa Tabellen von einem weiten zu einem langen Format zu transformieren.
 
 
 ```r
@@ -336,4 +354,4 @@ my_df %>%
          title = "Vergleich zweier DINI-zertifizierter Repositorien", subtitle = "Fachliche Verteilung Zeitschriftenartikel (2012 - 2018)") 
 ```
 
-<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="720" />
+<img src="figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="720" />

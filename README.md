@@ -24,6 +24,6 @@ Das Hands-On-Lab wird von der [DINI AG Elektronisches Publizieren](https://dini.
 
 - 16Uhr35 - 16Uhr45 	Kurzvorstellung der Tools
 
-- 16Uhr45 - 17Uhr10 	Gruppenarbeit: [Open Refine](openrefine.md) (Michaela Voigt), Catmandu (Vitali Peil), R (Najko Jahn)
+- 16Uhr45 - 17Uhr10 	Gruppenarbeit: [Open Refine](openrefine.md) (Michaela Voigt), [Catmandu](catmandu.md) (Vitali Peil), [R](oai_mit_R.md) (Najko Jahn)
 
 - 17Uhr10 - 17Uhr30	Vorstellung der Ergebnisse Gruppenarbeit und Abschlussdiskussion
